@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="mapstogpx.com" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.mapstogpx.com">
+      <text>Sverrir Sigmundarson</text>
+    </link>
+    <!--desc>Map data copyright 2021 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2021</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/1078 Harwood St, Vancouver, BC V6E 1R3/49.2845623,-123.1248559/49.2832703,-123.1228123/49.2776991,-123.1313846/49.278686,-123.1333266/@49.2816536,-123.1312934,17z/data=!4m12!4m11!1m5!1m1!1s0x548673d33119584d:0xff3114494ccb1de6!2m2!1d-123.1333513!2d49.2786952!1m0!1m0!1m0!1m0!3e2?hl=en</url-->
+    <time>2021-09-23T23:45:01Z</time>
+  </metadata>
+  <wpt lat="49.2788225" lon="-123.1331578">
+    <name>WP001</name>
+    <time>2021-09-23T23:45:01Z</time>
+  </wpt>
+  <wpt lat="49.2789841" lon="-123.1332509">
+    <name>WP002</name>
+    <time>2021-09-23T23:45:28Z</time>
+  </wpt>
+  <wpt lat="49.2845482" lon="-123.1248358">
+    <name>WP003</name>
+    <time>2021-09-24T00:05:45Z</time>
+  </wpt>
+  <wpt lat="49.2845546" lon="-123.1248252">
+    <name>WP004</name>
+    <time>2021-09-24T00:05:47Z</time>
+  </wpt>
+  <wpt lat="49.28324" lon="-123.1227974">
+    <name>WP005</name>
+    <time>2021-09-24T00:10:38Z</time>
+  </wpt>
+  <wpt lat="49.2832508" lon="-123.1227814">
+    <name>WP006</name>
+    <time>2021-09-24T00:10:41Z</time>
+  </wpt>
+  <wpt lat="49.2776698" lon="-123.1313798">
+    <name>WP007</name>
+    <time>2021-09-24T00:31:13Z</time>
+  </wpt>
+</gpx>
