@@ -27,7 +27,20 @@ For this walkthrough, you should have the following prerequisites:
 
 ### Setting up Amazon Location Services
 
-The first step of our solution consists of creating a new tracker and geofence collection on Amazon Location Services. Let’s start with the geofence collection:
+Let's start by creating a Place Index. Place indexes are used to perform geocoding and reverse-geocoding actions on Amazon Location. We will use it to search for places of interest on our application.
+1.	Open the Amazon Location Service console at https://console.aws.amazon.com/location/
+2.	In the left navigation pane, choose *Place indexes*.
+3.	Choose *Create place index*.
+4.	Fill out the following boxes:
+	1. Name – Enter a name for the place index resource. For example, _ExamplePlaceIndex_. Maximum 100 characters. Valid entries include alphanumeric characters, hyphens, periods, and underscores.
+	2. Description – Enter an optional description.
+5.	Under Data providers, choose an available data provider to use with your place index resource.
+6.	Under Data storage options, specify if you intend to store search results from your place index resource.
+7.	Under Pricing Plan, choose answers that best fit how you intend to use your place index resource.
+8.	(Optional) Under Tags, enter a tag Key and Value. This adds a tag your new place index resource. For more information, see Tagging your resources.
+9.	Choose *Create place index*.
+
+The next step of our solution consists of creating a new tracker and geofence collection on Amazon Location Services. Let’s start with the geofence collection:
 
 1.	Open the Amazon Location console at https://console.aws.amazon.com/location/
 2.	In the left navigation pane, choose *Geofence collections*. 
@@ -249,6 +262,11 @@ let locationManager = CLLocationManager()
                                              credentialsProvider: AWSMobileClient.default())
 ```
 
+#### Add search capabilities to the iOS app
+Add search function
+Update variables on mapview
+Update variables on contextview
+	
 ### Create the Amazon EventBridge rule
 
 The last piece we need to configure is how we should act when the user crosses a Geofence and generates an **ENTER** or **EXIT** event.
@@ -257,24 +275,12 @@ The last piece we need to configure is how we should act when the user crosses a
 2.	Choose *Create rule*. 
 3.	Enter a Name for the rule, and, optionally, a description. 
 4.	Under *Define pattern*, choose *Event pattern*. 
-5.	Under *Event matching pattern*, choose 8Pre-defined pattern by service*. 
+5.	Under *Event matching pattern*, choose *Pre-defined pattern by service*. 
 6.	In *Service provider*, select *AWS*. Then, in *Service name*, select *Amazon Location Service*. Finally, in *Event type*, select *Location Geofence Event*
 7.	Scroll down to *Select targets*, set the target as *Lambda Function*, and set the function you created using the Amplify CLI. If you are following this guide, it should be called **musterPointLocationFunction-dev**.
 8.	Click on *Create*. 
 
-### Test the application
 
-This solution has two apps: **muster-point-patrol** and **muster-point-client**. Build and run muster-point-client, first. Click the sign in button and create a new account. After that, you will see a map centered in the user’s location alongside the geofences that were created by you, previously.
-
-<img src="/images/client-1.png"  width="300" height="600" /> 
-
-Now build and run the muster-point-patrol app. Since both apps are sharing the same Amplify backend, you can choose to either create a new user or sign in with the user previously created in the muster-point-client app. After signing in, you will see a page with all the created users. The red background represents the users that are not safe (not inside a muster point).
-	
-<img src="/images/patrol-1.png"  width="300" height="600" /> 
-
-Back to the client app, start moving until you enter a muster point. When this happens, the user is automatically marked as safe and that is also reflected in the patrol application. If the user leaves the muster point, they are marked as not-safe, again.
-
-<img src="/images/client-2.png"  width="300" height="600" />  <img src="/images/patrol-2.png"  width="300" height="600" /> 
 	
 ### Cleaning up
 
