@@ -254,9 +254,79 @@ xed .
 3.	Build and run the app. 
 
 #### Add search capabilities to the iOS app
-Add search function
-Update variables on mapview
-Update variables on contextview
+	
+1.	On *ContentView.swift*, add the array that will hold the search results at the beginning of the *MapView* struct and pass the array as an argument to the MapView:
+	
+```swift
+var searchLocations: [MKPointAnnotation]
+```	
+
+```swift
+MapView(centerCoordinate: $centerCoordinate, searchLocations: searchLocations)
+```
+	
+2.	Add the *searchForLocation* function:
+	
+```swift
+func searchForLocation(search: String){
+	//setting bias to downtown Vancouver
+	let biasPosition = [NSNumber(value: centerCoordinate.longitude), NSNumber(value: centerCoordinate.latitude)]
+
+	//Creating the search request
+	let request = AWSLocationSearchPlaceIndexForTextRequest()!
+	request.text = search //Search text
+	request.indexName = "MyHereIndex" //Index name
+	request.biasPosition = biasPosition //Adding bias to filter the results to a region
+	request.maxResults = 10 //setting maximum results to 10
+
+	//API Call
+	let result = AWSLocation.default().searchPlaceIndex(forText: request)
+	result.continueWith { (task) -> Any? in
+	    if let error = task.error {
+		print("error \(error)")
+	    } else if let taskResult = task.result {
+		print("taskResult \(taskResult)")
+		var searchLocations = [MKPointAnnotation]()
+		for result in taskResult.results! {
+		    let lon = (result.place?.geometry?.point![0]) as! Double
+		    let lat = (result.place?.geometry?.point![1]) as! Double
+
+		    //Creating new Annotation based on the search response
+		    let newLocation = MKPointAnnotation()
+		    newLocation.title = result.place?.label
+		    newLocation.subtitle = result.place?.addressNumber
+		    newLocation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+		    searchLocations.append(newLocation)
+		}
+
+		//Updating array
+		self.searchLocations = searchLocations
+	    }
+	    return nil
+	}
+}
+```
+	
+3.	On *MapView.Swift* add another reference to the array that will hold the search results:
+
+```swift
+var searchLocations: [MKPointAnnotation]
+```
+4.	Change the *updateUIView* to add the search result markers to the map:
+
+```swift
+func updateUIView(_ view: MKMapView, context _: Context) {
+	print("updating")
+	
+	//Add markers to map
+	if searchLocations.count != view.annotations.count {
+	    view.removeAnnotations(view.annotations)
+	    view.addAnnotations(searchLocations)
+	}
+}
+```
+	
+5.	Build and run the app. Search for a location(ie: Starbucks). The pins should be populated on the map.
 	
 ### Create the Amazon EventBridge rule
 
@@ -270,7 +340,6 @@ The last piece we need to configure is how we should act when the user crosses a
 6.	In *Service provider*, select *AWS*. Then, in *Service name*, select *Amazon Location Service*. Finally, in *Event type*, select *Location Geofence Event*
 7.	Scroll down to *Select targets*, set the target as *Lambda Function*, and set the function you created using the Amplify CLI. If you are following this guide, it should be called **musterPointLocationFunction-dev**.
 8.	Click on *Create*. 
-
 
 	
 ### Cleaning up
