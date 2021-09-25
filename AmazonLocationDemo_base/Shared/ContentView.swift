@@ -18,7 +18,7 @@ struct ContentView: View {
         
     var body: some View {
         VStack {
-            MapView()
+            MapView(centerCoordinate: $centerCoordinate)
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 TextField(

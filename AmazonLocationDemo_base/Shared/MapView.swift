@@ -9,6 +9,8 @@ import MapKit
 import SwiftUI
 
 struct MapView: UIViewRepresentable {
+    
+    @Binding var centerCoordinate: CLLocationCoordinate2D
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()

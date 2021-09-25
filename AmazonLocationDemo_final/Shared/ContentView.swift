@@ -16,6 +16,8 @@ struct ContentView: View {
     
     let locationManagement = LocationManagement()
     @State private var centerCoordinate = CLLocationCoordinate2D()
+    
+    //Annotation array
     @State private var searchLocations = [MKPointAnnotation]()
         
     var body: some View {
