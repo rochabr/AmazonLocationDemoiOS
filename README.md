@@ -78,6 +78,19 @@ Now that you have a geofence collection and a tracker, you can link them togethe
 6.	Choose *Link*. 
 After you link the tracker resource, it will be assigned an **Active** status. Take note of your **Geofence collection** and **Tracker** names.
 
+### Create the Amazon EventBridge rule
+
+The last piece we need to configure is how we should act when the user crosses a Geofence and generates an **ENTER** or **EXIT** event.
+
+1.	Open the Amazon EventBridge console at https://console.aws.amazon.com/events/
+2.	Choose *Create rule*. 
+3.	Enter a Name for the rule, and, optionally, a description. 
+4.	Under *Define pattern*, choose *Event pattern*. 
+5.	Under *Event matching pattern*, choose *Pre-defined pattern by service*. 
+6.	In *Service provider*, select *AWS*. Then, in *Service name*, select *Amazon Location Service*. Finally, in *Event type*, select *Location Geofence Event*
+7.	Scroll down to *Select targets*, set the target as *CloudWatch log group*, and choose a name for your log group. 
+8.	Click on *Create*. 
+
 ### Mobile Clients – AWS Amplify
 
 #### Project download and configuration
@@ -328,19 +341,162 @@ func updateUIView(_ view: MKMapView, context _: Context) {
 	
 5.	Build and run the app. Search for a location(ie: Starbucks). The pins should be populated on the map.
 	
-### Create the Amazon EventBridge rule
+#### Add tracking capabilities to the iOS app
 
-The last piece we need to configure is how we should act when the user crosses a Geofence and generates an **ENTER** or **EXIT** event.
+The below steps describe how you can pass device location to the tracker resource you have created with Amazon Location Service:
 
-1.	Open the Amazon EventBridge console at https://console.aws.amazon.com/events/
-2.	Choose *Create rule*. 
-3.	Enter a Name for the rule, and, optionally, a description. 
-4.	Under *Define pattern*, choose *Event pattern*. 
-5.	Under *Event matching pattern*, choose *Pre-defined pattern by service*. 
-6.	In *Service provider*, select *AWS*. Then, in *Service name*, select *Amazon Location Service*. Finally, in *Event type*, select *Location Geofence Event*
-7.	Scroll down to *Select targets*, set the target as *Lambda Function*, and set the function you created using the Amplify CLI. If you are following this guide, it should be called **musterPointLocationFunction-dev**.
-8.	Click on *Create*. 
+1.	Add the following imports to the LocationManagement.swift file:
 
+```swift	
+import AWSLocation
+import AWSMobileClient
+```
+	
+2.	Create an instance of AWSLocationTracker, and add conformance to AWSLocationTrackerDelegate, as in the following example:
+
+```swift
+class LocationManagement: NSObject, 
+                          ObservableObject, 
+                          CLLocationManagerDelegate, 
+                          AWSLocationTrackerDelegate {  // Add AWSLocationTrackerDelegate conformance
+    let locationTracker = AWSLocationTracker(trackerName: "MyTracker",
+                                            region: AWSRegionType.[UPDATE_ME],
+                                            credentialsProvider: AWSMobileClient.default())
+}
+```
+	
+By conforming to AWSLocationTrackerDelegate, the requestUserLocation method will be added. You can leave this empty for now, as in the following example:
+
+```swift
+func requestLocation() {
+}
+```
+
+3.	Start tracking the device’s location with AWSLocationTracker. Inside locationManagerDidChangeAuthorization(_) add the following code in the authorized status scenario:
+
+```swift
+case .authorizedWhenInUse:
+    print("Received authorization of user location, requesting for location")
+    let result = locationTracker.startTracking(
+        delegate: self,
+        options: TrackerOptions(
+            customDeviceId: "12345",
+            retrieveLocationFrequency: TimeInterval(10),
+            emitLocationFrequency: TimeInterval(30)))
+    switch result {
+    case .success:
+        print("Tracking started successfully")
+    case .failure(let trackingError):
+        switch trackingError.errorType {
+        case .invalidTrackerName, .trackerAlreadyStarted, .unauthorized:
+            print("onFailedToStart \(trackingError)")
+        case .serviceError(let serviceError):
+            print("onFailedToStart serviceError: \(serviceError)")
+        }
+    }
+```
+	
+Note: Make sure to update the customDeviceId to an assigned deviceId or remove the parameter to have a random device ID assigned for this device. The assigned deviceId will be persisted across app restarts.
+
+Note: The example configures the tracking to retrieve location data every 10 seconds and send the location updates to Amazon Location Service every 30 seconds. The default values are 30 seconds for retrieveLocationFrequency and 300 seconds for emitLocationFrequency.
+
+Note: startTracking should be called after the user has authorized the app to retrieve device location data. Make sure to remove the call to startUpdatingLocation() as that will continuously retrieve a stream of location updates, rather than tracking the location at an interval.
+
+4.	Update the body of requestLocation method by calling locationManager.requestLocation(), as in the following example:
+
+```swift
+class LocationManagement: NSObject, ObservableObject, CLLocationManagerDelegate, AWSLocationTrackerDelegate  { 
+  // ...
+  func requestLocation() {
+    locationManager.requestLocation()
+  }
+  // ...
+}
+```
+	
+Note: requestLocation will be called on the retrieveLocationFrequency interval.
+
+5.	When your app retrieves location updates, pass the data for location tracking to update your tracker and continue performing your app logic, as in the following example:
+
+```swift
+class LocationManagement: NSObject, ObservableObject, CLLocationManagerDelegate, AWSLocationTrackerDelegate  { 
+  // ...
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    print("Got locations: \(locations)")
+    locationTracker.interceptLocationsRetrieved(locations)
+  }
+  // ...
+}
+```
+	
+6.	(Optional) Listen for tracking events to be notified when the tracker sends data to Amazon Location Service and when the tracker has stopped. The following example shows how this can be implemented:
+
+```swift
+func onTrackingEvent(event: TrackingListener) {
+    switch event {
+    case .onDataPublished(let trackingPublishedEvent):
+        print("onDataPublished: \(trackingPublishedEvent)")
+    case .onDataPublicationError(let error):
+        switch error.errorType {
+        case .invalidTrackerName, .trackerAlreadyStarted, .unauthorized:
+            print("onDataPublicationError \(error)")
+        case .serviceError(let serviceError):
+            print("onDataPublicationError serviceError: \(serviceError)")
+        }
+    case .onStop:
+        print("tracker stopped")
+    }
+}
+```
+	
+7.	Pass onTrackingEvent to startTracking()
+
+```swift
+let result = locationTracker.startTracking(
+                delegate: self,
+                options: TrackerOptions(
+                    customDeviceId: "12345",
+                    retrieveLocationFrequency: TimeInterval(30),
+                    emitLocationFrequency: TimeInterval(120)),
+                listener: onTrackingEvent)
+```
+	
+Note: onDataPublished will be triggered for each successful call to Amazon Location Service. The trackingPublishedEvent payload contains the request containing locations sent and the successful response from the service.
+
+Note: onDataPublicationError will be triggered for each attempt made to send location data to Amazon Location Service and had failed with an error.
+
+Note: onStop will be triggered when the tracker has been started and stopTracking was called.
+
+8.	(Optional) To debug your app, you can enable verbose logging during development, when the app starts up:
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  // Override point for customization after application launch.
+  AWSDDLog.sharedInstance.logLevel = .verbose
+  AWSDDLog.add(AWSDDTTYLogger.sharedInstance)
+  
+  //...
+  return true
+}
+```
+	
+9.	You have now successfully set up AWSLocationTracker in your app. Build an run the app. Check the log group created on CloudWatch for geofencing updates.
+
+10.	Stop tracking: When you want to prevent the tracker from continuing to store and emit location data, call the following method:
+
+```swift
+func stopTracking() {
+    locationTracker.stopTracking()
+}
+```
+	
+11.	Tracking status: You can also check if the tracker is currently tracking by calling the following method:
+
+```swift
+func isTracking() -> Bool {
+    locationTracker.isTracking()
+}
+```
 	
 ### Cleaning up
 
