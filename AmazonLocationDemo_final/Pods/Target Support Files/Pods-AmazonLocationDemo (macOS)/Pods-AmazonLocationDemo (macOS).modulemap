@@ -1,0 +1,6 @@
+framework module Pods_AmazonLocationDemo__macOS_ {
+  umbrella header "Pods-AmazonLocationDemo (macOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}

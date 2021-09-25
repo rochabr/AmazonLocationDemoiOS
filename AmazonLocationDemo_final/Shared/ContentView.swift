@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import AWSLocation
 
 struct ContentView: View {
     
@@ -15,10 +16,11 @@ struct ContentView: View {
     
     let locationManagement = LocationManagement()
     @State private var centerCoordinate = CLLocationCoordinate2D()
+    @State private var searchLocations = [MKPointAnnotation]()
         
     var body: some View {
         VStack {
-            MapView()
+            MapView(centerCoordinate: $centerCoordinate, searchLocations: searchLocations)
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 TextField(
@@ -40,9 +42,45 @@ struct ContentView: View {
     }
     
     func searchForLocation(search: String){
-        print(search)
+        //setting bias to downtown Vancouver
+        let biasPosition = [NSNumber(value: centerCoordinate.longitude), NSNumber(value: centerCoordinate.latitude)]
+        
+        let request = AWSLocationSearchPlaceIndexForTextRequest()!
+        request.text = search
+        request.indexName = "MyHereIndex"
+        request.biasPosition = biasPosition
+        request.maxResults = 10
+        
+        let result = AWSLocation.default().searchPlaceIndex(forText: request)
+        result.continueWith { (task) -> Any? in
+            if let error = task.error {
+                print("error \(error)")
+            } else if let taskResult = task.result {
+                print("taskResult \(taskResult)")
+                var searchLocations = [MKPointAnnotation]()
+                for result in taskResult.results! {
+                    let lon = (result.place?.geometry?.point![0]) as! Double
+                    let lat = (result.place?.geometry?.point![1]) as! Double
+                    
+                    let newLocation = MKPointAnnotation()
+                    newLocation.title = result.place?.label
+                    newLocation.subtitle = result.place?.addressNumber
+                    newLocation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    searchLocations.append(newLocation)
+                }
+                
+                self.searchLocations = searchLocations
+            }
+            return nil
+        }
     }
 }
+
+struct Marker: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

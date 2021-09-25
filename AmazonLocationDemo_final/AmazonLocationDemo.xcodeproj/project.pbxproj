@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,9 +20,16 @@
 		7627F01C26FDA3B100A3F930 /* LocationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7627F01A26FDA3B100A3F930 /* LocationManagement.swift */; };
 		7627F04A26FDB25700A3F930 /* vancouver-drive.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7627F04926FDB25700A3F930 /* vancouver-drive.gpx */; };
 		7627F04B26FDB25700A3F930 /* vancouver-drive.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7627F04926FDB25700A3F930 /* vancouver-drive.gpx */; };
+		76CD572726FDD0C200A684DD /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 76CD572526FDD0C200A684DD /* amplifyconfiguration.json */; };
+		76CD572826FDD0C200A684DD /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 76CD572526FDD0C200A684DD /* amplifyconfiguration.json */; };
+		76CD572926FDD0C200A684DD /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 76CD572626FDD0C200A684DD /* awsconfiguration.json */; };
+		76CD572A26FDD0C200A684DD /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 76CD572626FDD0C200A684DD /* awsconfiguration.json */; };
+		C2DEFE0C2F530E351C0B8983 /* Pods_AmazonLocationDemo__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5D959A96CDBA11F0BC7773 /* Pods_AmazonLocationDemo__iOS_.framework */; };
+		D33EB5AF8E83515AD7B556D2 /* Pods_AmazonLocationDemo__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD36B4ABBAB30292A972B92 /* Pods_AmazonLocationDemo__macOS_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28640BE86025861520B16881 /* Pods-AmazonLocationDemo (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazonLocationDemo (macOS).release.xcconfig"; path = "Target Support Files/Pods-AmazonLocationDemo (macOS)/Pods-AmazonLocationDemo (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		7627EFF326FD8D8700A3F930 /* AmazonLocationDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonLocationDemoApp.swift; sourceTree = "<group>"; };
 		7627EFF426FD8D8700A3F930 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7627EFF526FD8D8800A3F930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,6 +43,13 @@
 		7627F01A26FDA3B100A3F930 /* LocationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagement.swift; sourceTree = "<group>"; };
 		7627F04826FDABB900A3F930 /* vancouver-walk.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "vancouver-walk.gpx"; sourceTree = "<group>"; };
 		7627F04926FDB25700A3F930 /* vancouver-drive.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "vancouver-drive.gpx"; sourceTree = "<group>"; };
+		76CD572526FDD0C200A684DD /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = SOURCE_ROOT; };
+		76CD572626FDD0C200A684DD /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = SOURCE_ROOT; };
+		7E016B9E745E687E4216192F /* Pods-AmazonLocationDemo (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazonLocationDemo (iOS).release.xcconfig"; path = "Target Support Files/Pods-AmazonLocationDemo (iOS)/Pods-AmazonLocationDemo (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		ADFB23B7E1A30097844C8BE1 /* Pods-AmazonLocationDemo (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazonLocationDemo (iOS).debug.xcconfig"; path = "Target Support Files/Pods-AmazonLocationDemo (iOS)/Pods-AmazonLocationDemo (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		CCD36B4ABBAB30292A972B92 /* Pods_AmazonLocationDemo__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmazonLocationDemo__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CF26F6C1A6E4D78BCDE8A0 /* Pods-AmazonLocationDemo (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazonLocationDemo (macOS).debug.xcconfig"; path = "Target Support Files/Pods-AmazonLocationDemo (macOS)/Pods-AmazonLocationDemo (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		EB5D959A96CDBA11F0BC7773 /* Pods_AmazonLocationDemo__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmazonLocationDemo__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7627F01626FD8DC800A3F930 /* MapKit.framework in Frameworks */,
+				C2DEFE0C2F530E351C0B8983 /* Pods_AmazonLocationDemo__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,12 +66,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33EB5AF8E83515AD7B556D2 /* Pods_AmazonLocationDemo__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37D58E5725B58A1393AF592C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADFB23B7E1A30097844C8BE1 /* Pods-AmazonLocationDemo (iOS).debug.xcconfig */,
+				7E016B9E745E687E4216192F /* Pods-AmazonLocationDemo (iOS).release.xcconfig */,
+				D4CF26F6C1A6E4D78BCDE8A0 /* Pods-AmazonLocationDemo (macOS).debug.xcconfig */,
+				28640BE86025861520B16881 /* Pods-AmazonLocationDemo (macOS).release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7627EFED26FD8D8700A3F930 = {
 			isa = PBXGroup;
 			children = (
@@ -65,12 +92,15 @@
 				7627F00326FD8D8800A3F930 /* macOS */,
 				7627EFFB26FD8D8800A3F930 /* Products */,
 				7627F01426FD8DC700A3F930 /* Frameworks */,
+				37D58E5725B58A1393AF592C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		7627EFF226FD8D8700A3F930 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				76CD572526FDD0C200A684DD /* amplifyconfiguration.json */,
+				76CD572626FDD0C200A684DD /* awsconfiguration.json */,
 				7627F04826FDABB900A3F930 /* vancouver-walk.gpx */,
 				7627F04926FDB25700A3F930 /* vancouver-drive.gpx */,
 				7627EFF326FD8D8700A3F930 /* AmazonLocationDemoApp.swift */,
@@ -112,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				7627F01526FD8DC800A3F930 /* MapKit.framework */,
+				EB5D959A96CDBA11F0BC7773 /* Pods_AmazonLocationDemo__iOS_.framework */,
+				CCD36B4ABBAB30292A972B92 /* Pods_AmazonLocationDemo__macOS_.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7627F00E26FD8D8800A3F930 /* Build configuration list for PBXNativeTarget "AmazonLocationDemo (iOS)" */;
 			buildPhases = (
+				D248D59A3F7097E8405AE64F /* [CP] Check Pods Manifest.lock */,
 				7627EFF626FD8D8800A3F930 /* Sources */,
 				7627EFF726FD8D8800A3F930 /* Frameworks */,
 				7627EFF826FD8D8800A3F930 /* Resources */,
+				DF24AE5594CD5F0D2870B33B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7627F01126FD8D8800A3F930 /* Build configuration list for PBXNativeTarget "AmazonLocationDemo (macOS)" */;
 			buildPhases = (
+				2333733129B60EFFB53CC5E3 /* [CP] Check Pods Manifest.lock */,
 				7627EFFE26FD8D8800A3F930 /* Sources */,
 				7627EFFF26FD8D8800A3F930 /* Frameworks */,
 				7627F00026FD8D8800A3F930 /* Resources */,
@@ -194,7 +229,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CD572926FDD0C200A684DD /* awsconfiguration.json in Resources */,
 				7627F04A26FDB25700A3F930 /* vancouver-drive.gpx in Resources */,
+				76CD572726FDD0C200A684DD /* amplifyconfiguration.json in Resources */,
 				7627F00A26FD8D8800A3F930 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,12 +240,78 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CD572A26FDD0C200A684DD /* awsconfiguration.json in Resources */,
 				7627F04B26FDB25700A3F930 /* vancouver-drive.gpx in Resources */,
+				76CD572826FDD0C200A684DD /* amplifyconfiguration.json in Resources */,
 				7627F00B26FD8D8800A3F930 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2333733129B60EFFB53CC5E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AmazonLocationDemo (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D248D59A3F7097E8405AE64F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AmazonLocationDemo (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF24AE5594CD5F0D2870B33B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AmazonLocationDemo (iOS)/Pods-AmazonLocationDemo (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AmazonLocationDemo (iOS)/Pods-AmazonLocationDemo (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AmazonLocationDemo (iOS)/Pods-AmazonLocationDemo (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7627EFF626FD8D8800A3F930 /* Sources */ = {
@@ -349,6 +452,7 @@
 		};
 		7627F00F26FD8D8800A3F930 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADFB23B7E1A30097844C8BE1 /* Pods-AmazonLocationDemo (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -371,6 +475,7 @@
 		};
 		7627F01026FD8D8800A3F930 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E016B9E745E687E4216192F /* Pods-AmazonLocationDemo (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -394,6 +499,7 @@
 		};
 		7627F01226FD8D8800A3F930 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4CF26F6C1A6E4D78BCDE8A0 /* Pods-AmazonLocationDemo (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -418,6 +524,7 @@
 		};
 		7627F01326FD8D8800A3F930 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28640BE86025861520B16881 /* Pods-AmazonLocationDemo (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

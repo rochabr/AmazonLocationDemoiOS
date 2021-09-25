@@ -9,7 +9,10 @@ import MapKit
 import SwiftUI
 
 struct MapView: UIViewRepresentable {
-
+    
+    @Binding var centerCoordinate: CLLocationCoordinate2D
+    var searchLocations: [MKPointAnnotation]
+    
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.showsUserLocation = true
@@ -24,6 +27,11 @@ struct MapView: UIViewRepresentable {
 
     func updateUIView(_ view: MKMapView, context _: Context) {
         print("updating")
+        
+        if searchLocations.count != view.annotations.count {
+            view.removeAnnotations(view.annotations)
+            view.addAnnotations(searchLocations)
+        }
     }
 
     func makeCoordinator() -> Coordinator {
@@ -36,9 +44,14 @@ struct MapView: UIViewRepresentable {
         init(_ parent: MapView) {
             self.parent = parent
         }
+        
+        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+            parent.centerCoordinate = mapView.centerCoordinate
+        }
 
         func mapView(_ mapView: MKMapView, didUpdate _: MKUserLocation) {
             mapView.userTrackingMode = .follow
         }
     }
 }
+
