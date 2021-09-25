@@ -47,12 +47,14 @@ struct ContentView: View {
         //setting bias to downtown Vancouver
         let biasPosition = [NSNumber(value: centerCoordinate.longitude), NSNumber(value: centerCoordinate.latitude)]
         
+        //Creating the search request
         let request = AWSLocationSearchPlaceIndexForTextRequest()!
-        request.text = search
-        request.indexName = "MyHereIndex"
-        request.biasPosition = biasPosition
-        request.maxResults = 10
+        request.text = search //Search text
+        request.indexName = "MyHereIndex" //Index name
+        request.biasPosition = biasPosition //Adding bias to filter the results to a region
+        request.maxResults = 10 //setting maximum results to 10
         
+        //API Call
         let result = AWSLocation.default().searchPlaceIndex(forText: request)
         result.continueWith { (task) -> Any? in
             if let error = task.error {
@@ -64,6 +66,7 @@ struct ContentView: View {
                     let lon = (result.place?.geometry?.point![0]) as! Double
                     let lat = (result.place?.geometry?.point![1]) as! Double
                     
+                    //Creating new Annotation based on the search response
                     let newLocation = MKPointAnnotation()
                     newLocation.title = result.place?.label
                     newLocation.subtitle = result.place?.addressNumber
@@ -71,18 +74,13 @@ struct ContentView: View {
                     searchLocations.append(newLocation)
                 }
                 
+                //Updating array
                 self.searchLocations = searchLocations
             }
             return nil
         }
     }
 }
-
-struct Marker: Identifiable {
-    let id = UUID()
-    let coordinate: CLLocationCoordinate2D
-}
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

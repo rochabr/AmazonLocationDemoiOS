@@ -38,6 +38,10 @@ struct MapView: UIViewRepresentable {
         init(_ parent: MapView) {
             self.parent = parent
         }
+        
+        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+            parent.centerCoordinate = mapView.centerCoordinate
+        }
 
         func mapView(_ mapView: MKMapView, didUpdate _: MKUserLocation) {
             mapView.userTrackingMode = .follow

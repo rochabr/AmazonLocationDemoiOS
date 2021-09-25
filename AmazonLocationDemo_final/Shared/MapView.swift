@@ -28,6 +28,7 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ view: MKMapView, context _: Context) {
         print("updating")
         
+        //Add markers to map
         if searchLocations.count != view.annotations.count {
             view.removeAnnotations(view.annotations)
             view.addAnnotations(searchLocations)
