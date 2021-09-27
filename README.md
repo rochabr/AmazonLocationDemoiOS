@@ -284,17 +284,17 @@ import AWSLocation
 MapView(centerCoordinate: $centerCoordinate, searchLocations: searchLocations)
 ```
 	
-2.	Add the *searchForLocation* function:
+2.	Add the *searchForLocation* function replacing *<INDEX_NAME>* with the PlaceIndex name that was created by you:
 	
 ```swift
 func searchForLocation(search: String){
-	//setting bias to downtown Vancouver
+	//setting bias position to user's location
 	let biasPosition = [NSNumber(value: centerCoordinate.longitude), NSNumber(value: centerCoordinate.latitude)]
 
 	//Creating the search request
 	let request = AWSLocationSearchPlaceIndexForTextRequest()!
 	request.text = search //Search text
-	request.indexName = "MyHereIndex" //Index name
+	request.indexName = "<INDEX_NAME>" //Index name
 	request.biasPosition = biasPosition //Adding bias to filter the results to a region
 	request.maxResults = 10 //setting maximum results to 10
 
