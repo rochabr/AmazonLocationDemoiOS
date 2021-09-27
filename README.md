@@ -105,7 +105,7 @@ git clone git@github.com:rochabr/AmazonLocationDemoiOS.git
 3.	Switch to the project's folder
 
 ```
-cd AmazonLocationDemoiOS
+cd AmazonLocationDemoiOS_base
 ```
 
 4.	Initialize your project with the CocoaPods package manager by running the following command:
