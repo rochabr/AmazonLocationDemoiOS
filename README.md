@@ -358,15 +358,15 @@ import AWSLocation
 import AWSMobileClient
 ```
 	
-2.	Create an instance of AWSLocationTracker, and add conformance to AWSLocationTrackerDelegate, as in the following example:
+2.	Create an instance of AWSLocationTracker, and add conformance to AWSLocationTrackerDelegate, updating the tracker name and the region with your own values:
 
 ```swift
 class LocationManagement: NSObject, 
                           ObservableObject, 
                           CLLocationManagerDelegate, 
                           AWSLocationTrackerDelegate {  // Add AWSLocationTrackerDelegate conformance
-    let locationTracker = AWSLocationTracker(trackerName: "MyTracker",
-                                            region: AWSRegionType.[UPDATE_ME],
+    let locationTracker = AWSLocationTracker(trackerName: "<TRACKER_NAME>",
+                                            region: AWSRegionType.<REGION_NAME>,
                                             credentialsProvider: AWSMobileClient.default())
 }
 ```
