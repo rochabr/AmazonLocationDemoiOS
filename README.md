@@ -244,7 +244,7 @@ amplify console auth
 }
 ```
 
-#### Modify your plist files
+#### Modify your plist files and initiaize the mobile client
 
 Now we have all Amplify categories configured in our project, let’s take a look at the code that is collecting the geofences and tracking the user’s movement. 
 
@@ -263,8 +263,40 @@ xed .
     }
 }
 ```
-	
-3.	Build and run the app. 
+
+3.	Modify *AmazonLocationDemoApp.swift* with the code below to initialize the *AWSMobileClient* SDK with the configuration from *awsconfiguration.json*
+
+```swift
+import SwiftUI
+import AWSMobileClient
+
+
+@main
+struct AmazonLocationDemoApp: App {
+    init() {
+        configureAWSMobileClient()
+    }
+    
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+    
+    func configureAWSMobileClient() {
+        AWSMobileClient.default().initialize { (userState, error) in
+            if let userState = userState {
+                print("UserState: \(userState.rawValue)")
+            } else if let error = error {
+                print("error: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+```
+
+4.	Build and run the app. 
 
 #### Add search capabilities to the iOS app
 
