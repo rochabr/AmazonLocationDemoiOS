@@ -143,7 +143,7 @@ end
 4.	Run the following command to install the **AWS Location SDK**:
 
 ```
-pod install –repo-update
+pod install --repo-update
 ```
 
 4.	Open your project by running on the terminal:
