@@ -267,11 +267,17 @@ xed .
 3.	Build and run the app. 
 
 #### Add search capabilities to the iOS app
+
+1. Add an import statement for *AWSLocation*:
+
+```swift
+import AWSLocation
+```	
 	
-1.	On *ContentView.swift*, add the array that will hold the search results at the beginning of the *MapView* struct and pass the array as an argument to the MapView:
+2.	On *ContentView.swift*, add the array that will hold the search results at the beginning of the *MapView* struct and pass the array as an argument to the MapView:
 	
 ```swift
-var searchLocations: [MKPointAnnotation]
+@State private var searchLocations = [MKPointAnnotation]()
 ```	
 
 ```swift
