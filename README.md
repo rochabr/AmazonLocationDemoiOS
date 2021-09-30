@@ -458,7 +458,7 @@ Note: startTracking should be called after the user has authorized the app to re
 class LocationManagement: NSObject, ObservableObject, CLLocationManagerDelegate, AWSLocationTrackerDelegate  { 
   // ...
   func requestLocation() {
-    locationManager.startUpdatingLocation()
+    locationManager.requestLocation()
   }
   // ...
 }
