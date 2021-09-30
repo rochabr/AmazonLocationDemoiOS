@@ -256,7 +256,7 @@ amplify console auth
 }
 ```
 
-#### Modify your plist files and initiaize the mobile client
+#### Modify your configuration files and initialize the mobile client
 
 Now we have all Amplify categories configured in our project, let’s take a look at the code that is collecting the geofences and tracking the user’s movement. 
 
