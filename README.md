@@ -506,8 +506,8 @@ let result = locationTracker.startTracking(
                 delegate: self,
                 options: TrackerOptions(
                     customDeviceId: "12345",
-                    retrieveLocationFrequency: TimeInterval(30),
-                    emitLocationFrequency: TimeInterval(120)),
+                    retrieveLocationFrequency: TimeInterval(10),
+                    emitLocationFrequency: TimeInterval(30)),
                 listener: onTrackingEvent)
 ```
 	
