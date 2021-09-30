@@ -312,13 +312,13 @@ struct AmazonLocationDemoApp: App {
 
 #### Add search capabilities to the iOS app
 
-1. Add an import statement for *AWSLocation*:
+1. On *ContentView.swift*, add an import statement for *AWSLocation*:
 
 ```swift
 import AWSLocation
 ```	
 	
-2.	On *ContentView.swift*, add the array that will hold the search results at the beginning of the *MapView* struct and pass the array as an argument to the MapView:
+2.	Add the array that will hold the search results at the beginning of the *MapView* struct and pass the array as an argument to the MapView:
 	
 ```swift
 @State private var searchLocations = [MKPointAnnotation]()
