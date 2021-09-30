@@ -185,9 +185,7 @@ amplify init
     ios
 Using default provider  awscloudformation
 ? Select the authentication method you want to use:
-    AWS Profile
-? Please choose the profile you want to use
-    Default
+    AWS AcccessKeys
 ```
 
 Upon successfully running amplify init, you should see two new created files in your project directory: amplifyconfiguration.json and awsconfiguration.json. If the files are not there, they need to be manually moved to your XCode project folder. This is required so that Amplify libraries know how to reach your provisioned backend resources. Make sure that the file target is point to your client projects.
