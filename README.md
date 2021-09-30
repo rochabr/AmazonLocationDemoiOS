@@ -96,7 +96,7 @@ The last piece we need to configure is how we should act when the user crosses a
 #### Project download and configuration
 
 1.	Follow the instructions [in this link](https://docs.amplify.aws/start/getting-started/installation/q/integration/ios) to install Amplify and configure the CLI.
-2.	Clone this code repository
+2.	Clone this code repository, if you haven't done it before.
 
 ```
 git clone git@github.com:rochabr/AmazonLocationDemoiOS.git
