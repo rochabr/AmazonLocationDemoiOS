@@ -25,6 +25,18 @@ For this walkthrough, you should have the following prerequisites:
 *	git v2.14.1 or later
 *	Cocoapods
 
+1.	Clone this code repository, if you haven't done it before.
+
+```
+git clone git@github.com:rochabr/AmazonLocationDemoiOS.git
+```
+
+2.	Switch to the project's folder
+
+```
+cd AmazonLocationDemoiOS_base
+```
+
 ### Setting up Amazon Location Services
 
 Let's start by creating a Place Index. Place indexes are used to perform geocoding and reverse-geocoding actions on Amazon Location. We will use it to search for places of interest on our application.
