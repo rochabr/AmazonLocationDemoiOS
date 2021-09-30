@@ -236,7 +236,7 @@ amplify console auth
 6.	Open the AWS Identity and Access Management (IAM) console to manage roles.
 7.	In the Search field, enter the name of your unauthRole noted above and click on it.
 8.	Click *+Add inline policy*, then click on the JSON tab.
-9.	Fill in the [ARN] placeholder with the ARN of your tracker which you noted above and replace the contents of the policy with the below.
+9.	Fill in the [ARN] placeholder with the ARNs of your tracker and place index which you noted above and replace the contents of the policy with the below.
 
 ```json
 {
