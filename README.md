@@ -266,7 +266,7 @@ Now we have all Amplify categories configured in our project, let’s take a loo
 xed .
 ```
 
-2.	Open awsconfiguration.json and add the following lines to the end of the file:
+2.	Open awsconfiguration.json and add the following lines to the end of the file, adding the proper region:
 
 ```json
 "Location": {
