@@ -50,12 +50,12 @@ The next step of our solution consists of creating a new tracker and geofence co
     2. Description – Enter an optional description. 
 5.	Choose *Create geofence collection*. 
 
-You will now add the geofences that represent your places of interest. These geofences are created using GeoJSON files. You can use tools, such as [geojson.io](https://geojson.io), at no charge, to draw your geofences graphically and save the output GeoJSON file. With the file ready, we can populate our collection:
+You will now add the geofences that represent your places of interest. These geofences are created using GeoJSON files. You can use tools, such as [geojson.io](https://geojson.io), at no charge, to draw your geofences graphically and save the output GeoJSON file. For this exercise, we will have a file that is ready to use. Let's populate our collection:
 1.	Open the Amazon Location console at https://console.aws.amazon.com/location/
 2.	In the left navigation pane, choose *Geofence collections*. 
 3.	From the Geofence collections list, select the name link for the target geofence collection. 
 4.	Under *Geofences*, choose *Create geofences*. 
-5.	In the *Add geofences* window, drag and drop your GeoJSON into the window. 
+5.	In the *Add geofences* window, drag and drop the file *support/fences.geojson* GeoJSON into the window. 
 6.	Choose *Add geofences*. 
 
 Our next step is to create a Tracker. This tracker will be used on the iOS client to detect any changes in position that the user generates. These changes are pushed back to Amazon Location Services, which analyzes the position against the geofence collection, previously created. If an ENTER or EXIT events are detected, Amazon EventBridge is triggered.
