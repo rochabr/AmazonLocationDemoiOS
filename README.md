@@ -407,10 +407,10 @@ class LocationManagement: NSObject,
                           ObservableObject, 
                           CLLocationManagerDelegate, 
                           AWSLocationTrackerDelegate {  // Add AWSLocationTrackerDelegate conformance
+	
     let locationTracker = AWSLocationTracker(trackerName: "<TRACKER_NAME>",
                                             region: AWSRegionType.<REGION_NAME>,
                                             credentialsProvider: AWSMobileClient.default())
-}
 ```
 	
 By conforming to AWSLocationTrackerDelegate, the requestUserLocation method will be added. You can leave this empty for now, as in the following example:
